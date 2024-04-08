@@ -1,0 +1,4 @@
+com\talenthub\AccountManager\controller\ContactController.class
+com\talenthub\AccountManager\AccountManagerApplication.class
+com\talenthub\AccountManager\service\ContactService.class
+com\talenthub\AccountManager\model\ContactInfo.class

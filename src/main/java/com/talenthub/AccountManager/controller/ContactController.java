@@ -1,0 +1,23 @@
+package com.talenthub.AccountManager.controller;
+
+import com.talenthub.AccountManager.model.ContactInfo;
+import com.talenthub.AccountManager.service.ContactService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/form")
+public class ContactController {
+
+    @Autowired
+    ContactService contactService;
+
+    @CrossOrigin(origins = "http://localhost:8080")
+    @PostMapping("/send")
+    public ContactInfo sendMessage(@RequestBody ContactInfo contactInfo) {
+        System.out.println(contactInfo.toString());
+        return contactService.sendMessaage(contactInfo);
+    }
+}
