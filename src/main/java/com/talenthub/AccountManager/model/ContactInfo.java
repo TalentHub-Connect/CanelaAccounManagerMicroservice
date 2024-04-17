@@ -2,17 +2,18 @@ package com.talenthub.AccountManager.model;
 
 
 public class ContactInfo {
+    private String formName;
+    private String cellphone;
+
     private String email;
-    private String name;
-    private Integer cellphone;
     private String message;
 
     public ContactInfo() {
     }
 
-    public ContactInfo(String email, String name, Integer cellphone, String message) {
+    public ContactInfo(String formName, String cellphone, String email, String message) {
         this.email = email;
-        this.name = name;
+        this.formName = formName;
         this.cellphone = cellphone;
         this.message = message;
     }
@@ -25,29 +26,29 @@ public class ContactInfo {
         this.email = email;
     }
 
-    public String getName() {
-        return name;
+    public String getFormName() {
+        return formName;
     }
 
     @Override
     public String toString() {
         return "ContactInfo{" +
                 "email='" + email + '\'' +
-                ", name='" + name + '\'' +
+                ", name='" + formName + '\'' +
                 ", cellphone=" + cellphone +
                 ", message='" + message + '\'' +
                 '}';
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFormName(String formName) {
+        this.formName = formName;
     }
 
-    public Integer getCellphone() {
+    public String getCellphone() {
         return cellphone;
     }
 
-    public void setCellphone(Integer cellphone) {
+    public void setCellphone(String cellphone) {
         this.cellphone = cellphone;
     }
 
