@@ -12,7 +12,7 @@ public class PaymentRepository {
     }
 
     public BuyerInfo saveCardInfo(BuyerInfo cardInfo) {
-        System.out.println(cardInfo.toString());
+            System.out.println(cardInfo.toString());
         return cardInfo;
     }
 }
