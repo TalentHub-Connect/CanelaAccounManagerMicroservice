@@ -16,14 +16,14 @@ public class PaymentController {
     PaymentService paymentService;
 
     //@CrossOrigin(origins = {"https://talenthubsoftware.vercel.app","http://localhost:8080", "http://localhost:4200", "https://canelaapigatewayback-production.up.railway.app"})
-    @CrossOrigin(origins = "*")
+    @CrossOrigin
     @PostMapping("/buyer")
     public BuyerInfo getBuyerInfo(@RequestBody BuyerInfo buyerInfo) {
         return paymentService.getBuyerInfo(buyerInfo);
     }
 
     //@CrossOrigin(origins = {"https://talenthubsoftware.vercel.app","http://localhost:8080", "http://localhost:4200", "https://canelaapigatewayback-production.up.railway.app"})
-    @CrossOrigin(origins = "*")
+    @CrossOrigin
     @PostMapping("/card")
     public BuyerInfo getCardInfo(@RequestBody BuyerInfo cardInfo) {
         return paymentService.getCardInfo(cardInfo);
