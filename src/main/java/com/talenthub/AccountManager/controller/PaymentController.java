@@ -15,13 +15,13 @@ public class PaymentController {
     @Autowired
     PaymentService paymentService;
 
-    @CrossOrigin(origins = {"http://localhost:8080", "http://localhost:4200", "https://canelaapigatewayback-production.up.railway.app"})
+    @CrossOrigin(origins = {"https://talenthubsoftware.vercel.app","http://localhost:8080", "http://localhost:4200", "https://canelaapigatewayback-production.up.railway.app"})
     @PostMapping("/buyer")
     public BuyerInfo getBuyerInfo(@RequestBody BuyerInfo buyerInfo) {
         return paymentService.getBuyerInfo(buyerInfo);
     }
 
-    @CrossOrigin(origins = {"http://localhost:8080", "http://localhost:4200", "https://canelaapigatewayback-production.up.railway.app"})
+    @CrossOrigin(origins = {"https://talenthubsoftware.vercel.app","http://localhost:8080", "http://localhost:4200", "https://canelaapigatewayback-production.up.railway.app"})
     @PostMapping("/card")
     public BuyerInfo getCardInfo(@RequestBody BuyerInfo cardInfo) {
         return paymentService.getCardInfo(cardInfo);
