@@ -16,6 +16,7 @@ public class ContactController {
     ContactService contactService;
 
     //@CrossOrigin(origins = {"https://talenthubsoftware.vercel.app","http://localhost:8080", "http://localhost:4200", "https://canelaapigatewayback-production.up.railway.app"})
+    @CrossOrigin(origins = "*")
     @PostMapping("/send")
     public ContactInfo sendMessage(@RequestBody ContactInfo contactInfo) {
         System.out.println(contactInfo.toString());
