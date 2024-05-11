@@ -2,8 +2,6 @@ package com.talenthub.AccountManager.controller;
 
 import com.talenthub.AccountManager.model.BuyerInfo;
 import com.talenthub.AccountManager.model.CardInfo;
-import com.talenthub.AccountManager.model.ContactInfo;
-import com.talenthub.AccountManager.service.ContactService;
 import com.talenthub.AccountManager.service.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
