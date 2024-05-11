@@ -2,7 +2,6 @@ package com.talenthub.AccountManager.service;
 
 import com.talenthub.AccountManager.model.BuyerInfo;
 import com.talenthub.AccountManager.model.CardInfo;
-import com.talenthub.AccountManager.model.ContactInfo;
 import com.talenthub.AccountManager.repository.PaymentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
