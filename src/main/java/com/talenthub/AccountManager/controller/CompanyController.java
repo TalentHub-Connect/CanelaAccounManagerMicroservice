@@ -16,7 +16,7 @@ public class CompanyController {
     private CompanyService companyService;
 
     @CrossOrigin
-    @PostMapping("/send")
+    @PostMapping("/save")
     public Company sendMessage(@RequestBody Company company) {
         System.out.println(company.toString());
         return companyService.save(company);
