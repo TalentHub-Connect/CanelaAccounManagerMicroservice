@@ -7,6 +7,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Validated
 @RestController
 @RequestMapping("/company")
@@ -21,6 +23,13 @@ public class CompanyController {
         System.out.println(company.toString());
         return companyService.save(company);
     }
+
+    @CrossOrigin
+    @GetMapping("/list")
+    public List<Company> findAll() {
+        return companyService.findAll();
+    }
+
 
 
 //

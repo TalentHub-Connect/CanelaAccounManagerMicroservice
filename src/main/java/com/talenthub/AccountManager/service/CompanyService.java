@@ -5,6 +5,8 @@ import com.talenthub.AccountManager.repository.CompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CompanyService {
 
@@ -13,6 +15,10 @@ public class CompanyService {
 
     public Company save(Company company) {
         return companyRepository.save(company);
+    }
+
+    public List<Company> findAll() {
+        return companyRepository.findAll();
     }
 
 //    public void delete(Integer id) {
