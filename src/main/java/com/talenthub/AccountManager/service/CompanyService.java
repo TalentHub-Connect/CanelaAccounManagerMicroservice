@@ -1,6 +1,7 @@
 package com.talenthub.AccountManager.service;
 
 import com.talenthub.AccountManager.model.Company;
+import com.talenthub.AccountManager.payload.response.CompanyResponse;
 import com.talenthub.AccountManager.repository.CompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,8 +11,12 @@ import java.util.List;
 @Service
 public class CompanyService {
 
+    private final CompanyRepository companyRepository;
+
     @Autowired
-    CompanyRepository companyRepository;
+    public CompanyService(CompanyRepository companyRepository) {
+        this.companyRepository = companyRepository;
+    }
 
     public Company save(Company company) {
         return companyRepository.save(company);
@@ -19,6 +24,13 @@ public class CompanyService {
 
     public List<Company> findAll() {
         return companyRepository.findAll();
+    }
+
+
+    public CompanyResponse getCompanyId(String email) {
+        return CompanyResponse.builder()
+                .id(companyRepository.getCompanyIdByEmail(email))
+                .build();
     }
 
 //    public void delete(Integer id) {

@@ -1,9 +1,11 @@
 package com.talenthub.AccountManager.controller;
 
 import com.talenthub.AccountManager.model.Company;
+import com.talenthub.AccountManager.payload.response.CompanyResponse;
 import com.talenthub.AccountManager.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,11 +13,15 @@ import java.util.List;
 
 @Validated
 @RestController
-@RequestMapping("/company")
+@RequestMapping("/api/talentsoft/company")
 public class CompanyController {
 
+    private final CompanyService companyService;
+
     @Autowired
-    private CompanyService companyService;
+    public CompanyController(CompanyService companyService) {
+        this.companyService = companyService;
+    }
 
     @CrossOrigin
     @PostMapping("/save")
@@ -29,6 +35,19 @@ public class CompanyController {
     public List<Company> findAll() {
         return companyService.findAll();
     }
+
+    @GetMapping("/{email}")
+    public ResponseEntity<CompanyResponse> getCompany(@PathVariable String email) {
+        try {
+            return ResponseEntity.ok(companyService.getCompanyId(email));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+
+
+
 
 
 
