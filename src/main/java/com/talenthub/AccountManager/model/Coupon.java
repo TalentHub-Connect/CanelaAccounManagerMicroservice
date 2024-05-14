@@ -13,8 +13,19 @@ public class Coupon {
     private String description;
     private String expirationdate;
     private String status;  
+    @Column(name = "companyid", nullable = false)
     private Long companyId;  
     private Double discountrate; 
+    @Column(name = "company_id", nullable = false)
+    private Long companyid;  
+
+    public Long getCompanyid() {
+        return companyid;
+    }
+
+    public void setCompanyid(Long companyid) {
+        this.companyid = companyid;
+    }
 
     // Getters and setters
     public Long getId() {

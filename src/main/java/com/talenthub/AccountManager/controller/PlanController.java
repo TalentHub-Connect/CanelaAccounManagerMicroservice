@@ -11,7 +11,7 @@ import com.talenthub.AccountManager.service.PlanService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/plans")
+@RequestMapping("/plan")
 public class PlanController {
 
     @Autowired

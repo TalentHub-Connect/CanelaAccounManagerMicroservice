@@ -11,7 +11,7 @@ import com.talenthub.AccountManager.service.CouponService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/coupons")
+@RequestMapping("/coupon")
 public class CouponController {
 
     @Autowired
