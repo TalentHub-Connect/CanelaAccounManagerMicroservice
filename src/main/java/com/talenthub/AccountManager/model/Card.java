@@ -10,38 +10,35 @@ import java.io.Serializable;
 
 @Data
 @Entity
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "card")
-public class Card implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class Card {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "id", nullable = false)
-    private Integer id;
-
-    @Column(name = "cardnumber", nullable = false)
-    private String cardnumber;
-
-    @Column(name = "cardholder")
-    private String cardholder;
-
-    @Column(name = "cardmonth")
-    private String cardmonth;
-
-    @Column(name = "cardyear")
-    private String cardyear;
-
-    @Column(name = "cardcvc")
-    private String cardcvc;
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    
+    @Column(name = "cardnumber", nullable = false, length = 19)
+    private String cardNumber;
+    
+    @Column(name = "cardholder", length = 50)
+    private String cardHolder;
+    
+    @Column(name = "cardmonth", length = 2)
+    private String cardMonth;
+    
+    @Column(name = "cardyear", length = 2)
+    private String cardYear;
+    
+    @Column(name = "cardcvc", length = 3)
+    private String cardCvc;
+    
     @Column(name = "autorenewal")
-    private Integer autorenewal;
-
-    @Column(name = "holderemail", nullable = false)
-    private String holderemail;
+    private int autoRenewal;
+    
+    @Column(name = "holderemail", length = 45)
+    private String holderEmail;
 
 
 }
