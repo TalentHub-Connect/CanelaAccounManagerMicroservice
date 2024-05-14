@@ -4,37 +4,80 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-import java.io.Serializable;
 
 @Data
 @Entity
 @Table(name = "plan")
 @Accessors(chain = true)
-public class Plan implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
+public class Plan {
     @Id
-    @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name = "name")
     private String name;
-
-    @Column(name = "description")
     private String description;
-
-    @Column(name = "maxnumworkers")
     private Integer maxnumworkers;
-
-    @Column(name = "price")
     private Double price;
-
-    @Column(name = "duration")
     private String duration;
-
-    @Column(name = "status")
     private String status;
 
+    // Getters and Setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
+    }
+
+    public Integer getMaxnumworkers() {
+        return maxnumworkers;
+    }
+
+    public void setMaxnumworkers(Integer maxnumworkers) {
+        this.maxnumworkers = maxnumworkers;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+  
 }
