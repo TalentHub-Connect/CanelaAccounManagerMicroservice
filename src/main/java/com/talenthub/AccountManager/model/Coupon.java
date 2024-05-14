@@ -2,39 +2,86 @@ package com.talenthub.AccountManager.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.experimental.Accessors;
-
-import java.io.Serializable;
-
 @Data
 @Entity
 @Table(name = "coupon")
-@Accessors(chain = true)
-public class Coupon implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
+public class Coupon {
     @Id
-    @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name = "name")
     private String name;
-
-    @Column(name = "description")
     private String description;
-
-    @Column(name = "expirationdate")
     private String expirationdate;
+    private String status;  
+    private Long companyId;  
+    private Double discountrate; 
 
-    @Column(name = "status")
-    private String status;
+    // Getters and setters
+    public Long getId() {
+        return id;
+    }
 
-    @Column(name = "discountrate")
-    private Double discountrate;
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    @Column(name = "companyid", nullable = false)
-    private Integer companyid;
+    public String getName() {
+        return name;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+   
+
+    public String getStatus() {
+        return status;
+    }
+
+
+
+    public Long getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(Long companyId) {
+        this.companyId = companyId;
+    }
+
+    public Double getDiscountRate() {
+        return discountrate;
+    }
+
+    public void setDiscountRate(Double discountrate) {
+        this.discountrate = discountrate;
+    }
+
+    public String getExpirationdate() {
+        return expirationdate;
+    }
+
+    public void setExpirationdate(String expirationdate) {
+        this.expirationdate = expirationdate;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Double getDiscountrate() {
+        return discountrate;
+    }
+
+    public void setDiscountrate(Double discountrate) {
+        this.discountrate = discountrate;
+    }
 }
