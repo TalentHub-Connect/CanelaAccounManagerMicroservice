@@ -1,39 +1,44 @@
 package com.talenthub.AccountManager.controller;
 
+import com.talenthub.AccountManager.model.Servicie;
+import com.talenthub.AccountManager.service.ServicieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.talenthub.AccountManager.model.Servicie;
-import com.talenthub.AccountManager.repository.ServicieRepository;
-
 import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/services")  // Updated the base path to match the specified endpoints
+@RequestMapping("/services")
 public class ServicieController {
 
     @Autowired
-    private ServicieRepository serviceRepository;
+    private ServicieService servicieService;
 
-    // Listar todos los Servicios
+    // Listar todos los Servicios o filtrar por rol_id
     @GetMapping
-    public ResponseEntity<List<Servicie>> getAllServices() {
-        List<Servicie> services = serviceRepository.findAll();
+    public ResponseEntity<List<Servicie>> getAllServices(@RequestParam(required = false) Long roleId) {
+        List<Servicie> services;
+        if (roleId != null) {
+            services = servicieService.findServiciesByRoleId(roleId);
+        } else {
+            services = servicieService.findAllServicies();
+        }
         return ResponseEntity.ok(services);
     }
 
     // Crear un Servicio
     @PostMapping
     public ResponseEntity<Servicie> createService(@RequestBody Servicie service) {
-        Servicie savedService = serviceRepository.save(service);
+        Servicie savedService = servicieService.createServicie(service);
         return ResponseEntity.status(201).body(savedService);
     }
 
     // Obtener un Servicio
     @GetMapping("/{serviceId}")
     public ResponseEntity<Servicie> getService(@PathVariable Long serviceId) {
-        Servicie service = serviceRepository.findById(serviceId)
+        Servicie service = servicieService.findServicieById(serviceId)
             .orElseThrow(() -> new RuntimeException("Service not found with id: " + serviceId));
         return ResponseEntity.ok(service);
     }
@@ -41,23 +46,24 @@ public class ServicieController {
     // Actualizar un Servicio
     @PutMapping("/{serviceId}")
     public ResponseEntity<Servicie> updateService(@PathVariable Long serviceId, @RequestBody Servicie serviceDetails) {
-        Servicie service = serviceRepository.findById(serviceId)
+        Servicie service = servicieService.findServicieById(serviceId)
             .orElseThrow(() -> new RuntimeException("Service not found with id: " + serviceId));
 
         service.setDescription(serviceDetails.getDescription());
         service.setRoleId(serviceDetails.getRoleId());
+        service.setStatus(serviceDetails.getStatus());
 
-        Servicie updatedService = serviceRepository.save(service);
+        Servicie updatedService = servicieService.updateServicie(serviceId, service.getDescription(), service.getRoleId(), service.getStatus());
         return ResponseEntity.ok(updatedService);
     }
 
     // Eliminar un Servicio
     @DeleteMapping("/{serviceId}")
     public ResponseEntity<Void> deleteService(@PathVariable Long serviceId) {
-        Servicie service = serviceRepository.findById(serviceId)
+        Servicie service = servicieService.findServicieById(serviceId)
             .orElseThrow(() -> new RuntimeException("Service not found with id: " + serviceId));
 
-        serviceRepository.delete(service);
+        servicieService.deleteServicie(serviceId);
         return ResponseEntity.ok().build();
     }
 }

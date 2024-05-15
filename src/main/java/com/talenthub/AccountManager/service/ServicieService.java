@@ -1,11 +1,11 @@
 package com.talenthub.AccountManager.service;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.talenthub.AccountManager.model.Servicie;
 import com.talenthub.AccountManager.repository.ServicieRepository;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -22,6 +22,11 @@ public class ServicieService {
     @Transactional(readOnly = true)
     public List<Servicie> findAllServicies() {
         return servicieRepository.findAll();
+    }
+
+    @Transactional(readOnly = true)
+    public List<Servicie> findServiciesByRoleId(Long roleId) {
+        return servicieRepository.findByRoleId(roleId);
     }
 
     @Transactional
