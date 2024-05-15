@@ -1,25 +1,20 @@
 package com.talenthub.AccountManager.controller;
 
-import com.talenthub.AccountManager.model.ServiceEntity;
+import com.talenthub.AccountManager.model.Servicie;
 import com.talenthub.AccountManager.service.ServicieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
 
-@Validated
+import java.util.List;
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/services")
 public class ServicieController {
 
-    private final ServicieService servicieService;
-
     @Autowired
-    public ServicieController(ServicieService servicieService) {
-        this.servicieService = servicieService;
-    }
-
+    private ServicieService servicieService;
 
     // Listar todos los Servicios o filtrar por rol_id
     @GetMapping
@@ -40,7 +35,7 @@ public class ServicieController {
         return savedService;
     }
 
-    // Obtener un Servicio por ID
+    // Obtener un Servicio
     @GetMapping("/{serviceId}")
     public Servicie getService(@PathVariable Long serviceId) {
         try {
@@ -50,7 +45,6 @@ public class ServicieController {
             e.printStackTrace();
             return null;
         }
-
 
     }
 
@@ -69,7 +63,6 @@ public class ServicieController {
             e.printStackTrace();
             return null;
         }
-
 
     }
 
