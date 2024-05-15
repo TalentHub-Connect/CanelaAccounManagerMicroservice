@@ -14,11 +14,7 @@
       <configuration>
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="Hibernate" />
-
-        <datasource-mapping>
-          <factory-entry name="AccountManager" />
-          <factory-entry name="entityManagerFactory" value="715cfc2d-685a-44aa-baa3-c415ac91532b" />
-        </datasource-mapping>
+        <datasource-mapping />
         <naming-strategy-map />
       </configuration>
     </facet>
@@ -54,6 +50,7 @@
     <orderEntry type="library" scope="RUNTIME" name="Maven: net.bytebuddy:byte-buddy:1.14.12" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.glassfish.jaxb:jaxb-runtime:4.0.5" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.glassfish.jaxb:jaxb-core:4.0.5" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: org.eclipse.angus:angus-activation:2.0.2" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.glassfish.jaxb:txw2:4.0.5" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: com.sun.istack:istack-commons-runtime:4.1.2" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: jakarta.inject:jakarta.inject-api:2.0.1" level="project" />
@@ -94,22 +91,13 @@
     <orderEntry type="library" name="Maven: io.micrometer:micrometer-commons:1.12.4" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-webmvc:6.1.5" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-expression:6.1.5" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-web-services:3.2.4" level="project" />
-    <orderEntry type="library" name="Maven: com.sun.xml.messaging.saaj:saaj-impl:3.0.3" level="project" />
-    <orderEntry type="library" name="Maven: jakarta.xml.soap:jakarta.xml.soap-api:3.0.1" level="project" />
-    <orderEntry type="library" name="Maven: org.jvnet.staxex:stax-ex:2.1.0" level="project" />
-    <orderEntry type="library" name="Maven: jakarta.activation:jakarta.activation-api:2.1.3" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Maven: org.eclipse.angus:angus-activation:2.0.2" level="project" />
-    <orderEntry type="library" name="Maven: jakarta.xml.ws:jakarta.xml.ws-api:4.0.1" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-oxm:6.1.5" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.ws:spring-ws-core:4.0.10" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.ws:spring-xml:4.0.10" level="project" />
     <orderEntry type="library" name="Maven: org.projectlombok:lombok:1.18.30" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework.boot:spring-boot-starter-test:3.2.4" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework.boot:spring-boot-test:3.2.4" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework.boot:spring-boot-test-autoconfigure:3.2.4" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: com.jayway.jsonpath:json-path:2.9.0" level="project" />
     <orderEntry type="library" name="Maven: jakarta.xml.bind:jakarta.xml.bind-api:4.0.2" level="project" />
+    <orderEntry type="library" name="Maven: jakarta.activation:jakarta.activation-api:2.1.3" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: net.minidev:json-smart:2.5.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: net.minidev:accessors-smart:2.5.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.ow2.asm:asm:9.3" level="project" />
