@@ -21,48 +21,69 @@ public class ServicieController {
     }
 
 
-    @GetMapping("/role/{rolId}")
-    public ResponseEntity<List<ServiceEntity>> getServicesByRolId(@PathVariable Long rolId) {
-        List<ServiceEntity> serviceEntities = servicieService.findServicesByRolId(rolId);
-        return ResponseEntity.ok(serviceEntities);
+    // Listar todos los Servicios o filtrar por rol_id
+    @GetMapping
+    public List<Servicie> getAllServices(@RequestParam(required = false) Long roleId) {
+        List<Servicie> services;
+        if (roleId != null) {
+            services = servicieService.findServiciesByRoleId(roleId);
+        } else {
+            services = servicieService.findAllServicies();
+        }
+        return services;
     }
 
     // Crear un Servicio
     @PostMapping
-    public ResponseEntity<ServiceEntity> createService(@RequestBody ServiceEntity serviceEntity) {
-        ServiceEntity savedServiceEntity = servicieService.createServicie(serviceEntity);
-        return ResponseEntity.status(201).body(savedServiceEntity);
+    public Servicie createService(@RequestBody Servicie service) {
+        Servicie savedService = servicieService.createServicie(service);
+        return savedService;
     }
 
     // Obtener un Servicio por ID
     @GetMapping("/{serviceId}")
-    public ResponseEntity<ServiceEntity> getService(@PathVariable Long serviceId) {
-        ServiceEntity serviceEntity = servicieService.findServicieById(serviceId)
-                .orElseThrow(() -> new RuntimeException("ServiceEntity not found with id: " + serviceId));
-        return ResponseEntity.ok(serviceEntity);
+    public Servicie getService(@PathVariable Long serviceId) {
+        try {
+            Servicie service = servicieService.findServicieById(serviceId).get();
+            return service;
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+
+
     }
 
     // Actualizar un Servicio
     @PutMapping("/{serviceId}")
-    public ResponseEntity<ServiceEntity> updateService(@PathVariable Long serviceId, @RequestBody ServiceEntity serviceEntityDetails) {
-        ServiceEntity serviceEntity = servicieService.findServicieById(serviceId)
-                .orElseThrow(() -> new RuntimeException("ServiceEntity not found with id: " + serviceId));
+    public Servicie updateService(@PathVariable Long serviceId, @RequestBody Servicie serviceDetails) {
+        try{
+            Servicie service = servicieService.findServicieById(serviceId).get();
+            service.setDescription(serviceDetails.getDescription());
+            service.setRoleId(serviceDetails.getRoleId());
+            service.setStatus(serviceDetails.getStatus());
 
-        serviceEntity.setDescription(serviceEntityDetails.getDescription());
-        serviceEntity.setRolId(serviceEntityDetails.getRolId());
-        serviceEntity.setStatus(serviceEntityDetails.getStatus());
+            Servicie updatedService = servicieService.updateServicie(serviceId, service.getDescription(), service.getRoleId(), service.getStatus());
+            return updatedService;
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
 
-        ServiceEntity updatedServiceEntity = servicieService.updateServicie(serviceId, serviceEntity.getDescription(), serviceEntity.getRolId(), serviceEntity.getStatus());
-        return ResponseEntity.ok(updatedServiceEntity);
+
     }
 
     // Eliminar un Servicio
     @DeleteMapping("/{serviceId}")
-    public ResponseEntity<Void> deleteService(@PathVariable Long serviceId) {
-        servicieService.findServicieById(serviceId)
-                .orElseThrow(() -> new RuntimeException("ServiceEntity not found with id: " + serviceId));
+    public boolean deleteService(@PathVariable Long serviceId) {
+        try{
+            Servicie service = servicieService.findServicieById(serviceId).get();
+            servicieService.deleteServicie(serviceId);
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
 
-        servicieService.deleteServicie(serviceId);
-        return ResponseEntity.ok().build();
     }
 }

@@ -18,25 +18,28 @@ public class CouponController {
     private CouponService couponService;
 
     @GetMapping
-    public ResponseEntity<List<Coupon>> getAllCoupons() {
-        return ResponseEntity.ok(couponService.findAllCoupons());
+    public List<Coupon> getAllCoupons() {
+        return couponService.findAllCoupons();
     }
 
     @PostMapping
-    public ResponseEntity<Coupon> createCoupon(@RequestBody Coupon coupon) {
-        return ResponseEntity.status(201).body(couponService.saveCoupon(coupon));
+    public Coupon createCoupon(@RequestBody Coupon coupon) {
+        return couponService.saveCoupon(coupon);
     }
 
     @GetMapping("/{couponId}")
-    public ResponseEntity<Coupon> getCoupon(@PathVariable Long couponId) {
-        return couponService.findById(couponId)
-                .map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
+    public Coupon getCoupon(@PathVariable Long couponId) {
+        try{
+            return couponService.findById(couponId).get();
+        }catch(Exception e){
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @PutMapping("/{couponId}")
-    public ResponseEntity<Coupon> updateCoupon(@PathVariable Long couponId, @RequestBody Coupon couponDetails) {
-        return ResponseEntity.ok(couponService.updateCoupon(couponId, couponDetails));
+    public Coupon updateCoupon(@PathVariable Long couponId, @RequestBody Coupon couponDetails) {
+        return couponService.updateCoupon(couponId, couponDetails);
     }
 
     @DeleteMapping("/{couponId}")
