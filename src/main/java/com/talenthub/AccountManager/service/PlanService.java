@@ -11,8 +11,12 @@ import java.util.Optional;
 @Service
 public class PlanService {
 
+    private final PlanRepository planRepository;
+
     @Autowired
-    private PlanRepository planRepository;
+    public PlanService(PlanRepository planRepository) {
+        this.planRepository = planRepository;
+    }
 
     public List<Plan> findAllPlans() {
         return planRepository.findAll();

@@ -1,6 +1,6 @@
 package com.talenthub.AccountManager.service;
 
-import com.talenthub.AccountManager.model.Servicie;
+import com.talenthub.AccountManager.model.ServiceEntity;
 import com.talenthub.AccountManager.repository.ServicieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,40 +19,38 @@ public class ServicieService {
         this.servicieRepository = servicieRepository;
     }
 
-    @Transactional(readOnly = true)
-    public List<Servicie> findAllServicies() {
+    public List<ServiceEntity> findAllServicies() {
         return servicieRepository.findAll();
     }
 
-    @Transactional(readOnly = true)
-    public List<Servicie> findServiciesByRoleId(Long roleId) {
+    public List<ServiceEntity> findServicesByRolId(Long roleId) {
         return servicieRepository.findByRoleId(roleId);
     }
 
     @Transactional
-    public Servicie createServicie(Servicie servicie) {
-        return servicieRepository.save(servicie);
+    public ServiceEntity createServicie(ServiceEntity serviceEntity) {
+        return servicieRepository.save(serviceEntity);
     }
 
     @Transactional
-    public Servicie updateServicie(Long id, String description, Long roleId, String status) {
-        Servicie servicie = servicieRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Servicie not found"));
-        servicie.setDescription(description);
-        servicie.setRoleId(roleId);
-        servicie.setStatus(status);
-        return servicieRepository.save(servicie);
+    public ServiceEntity updateServicie(Long id, String description, Long roleId, String status) {
+        ServiceEntity serviceEntity = servicieRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("ServiceEntity not found"));
+        serviceEntity.setDescription(description);
+        serviceEntity.setRolId(roleId);
+        serviceEntity.setStatus(status);
+        return servicieRepository.save(serviceEntity);
     }
 
     @Transactional(readOnly = true)
-    public Optional<Servicie> findServicieById(Long id) {
+    public Optional<ServiceEntity> findServicieById(Long id) {
         return servicieRepository.findById(id);
     }
 
     @Transactional
     public void deleteServicie(Long id) {
-        Servicie servicie = servicieRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Servicie not found"));
-        servicieRepository.delete(servicie);
+        ServiceEntity serviceEntity = servicieRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("ServiceEntity not found"));
+        servicieRepository.delete(serviceEntity);
     }
 }

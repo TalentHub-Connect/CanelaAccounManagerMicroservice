@@ -13,8 +13,13 @@ import jakarta.transaction.Transactional;
 
 @Service
 public class FacturationService {
+
+    private final FacturationRepository repository;
+
     @Autowired
-    private FacturationRepository repository;
+    public FacturationService(FacturationRepository repository) {
+        this.repository = repository;
+    }
 
     @Transactional
     public Facturation createFacturation(Facturation facturation) {

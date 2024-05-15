@@ -12,8 +12,12 @@ import java.util.Optional;
 @Service
 public class CardService {
 
+    private final CardRepository cardRepository;
+
     @Autowired
-    private CardRepository cardRepository;
+    public CardService(CardRepository cardRepository) {
+        this.cardRepository = cardRepository;
+    }
 
     public List<Card> getAllCards() {
         return cardRepository.findAll();
