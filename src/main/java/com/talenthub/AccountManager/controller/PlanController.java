@@ -22,6 +22,12 @@ public class PlanController {
         return ResponseEntity.ok(planService.findAllPlans());
     }
 
+    @GetMapping("/list")
+    public List<Plan> findAll() {
+        return planService.findAllPlans();
+    }
+
+
     @GetMapping("/{id}")
 public ResponseEntity<Plan> getPlanById(@PathVariable Long id) {
     Plan plan = planService.findPlanById(id);
