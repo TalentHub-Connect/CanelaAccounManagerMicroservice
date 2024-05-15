@@ -12,8 +12,13 @@ import com.talenthub.AccountManager.repository.CouponRepository;
 @Service
 public class CouponService {
 
+
+    private final CouponRepository couponRepository;
+
     @Autowired
-    private CouponRepository couponRepository;
+    public CouponService(CouponRepository couponRepository) {
+        this.couponRepository = couponRepository;
+    }
 
     public List<Coupon> findAllCoupons() {
         return couponRepository.findAll();
