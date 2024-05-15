@@ -20,30 +20,38 @@ public class FacturationController {
     private FacturationService service;
 
     @PostMapping
-    public ResponseEntity<Facturation> createFacturation(@RequestBody Facturation facturation) {
-        return ResponseEntity.ok(service.createFacturation(facturation));
+    public Facturation createFacturation(@RequestBody Facturation facturation) {
+        return service.createFacturation(facturation);
     }
 
     @GetMapping("/{facturationId}")
-    public ResponseEntity<Facturation> getFacturation(@PathVariable Long facturationId) {
-        return service.getFacturationById(facturationId)
-                .map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
+    public Facturation getFacturation(@PathVariable Long facturationId) {
+        try {
+            return service.getFacturationById(facturationId).get();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @PutMapping("/{facturationId}")
-    public ResponseEntity<Facturation> updateFacturation(@PathVariable Long facturationId, @RequestBody Facturation facturation) {
-        return ResponseEntity.ok(service.updateFacturation(facturationId, facturation));
+    public Facturation updateFacturation(@PathVariable Long facturationId, @RequestBody Facturation facturation) {
+        return service.updateFacturation(facturationId, facturation);
     }
 
     @DeleteMapping("/{facturationId}")
-    public ResponseEntity<Void> deleteFacturation(@PathVariable Long facturationId) {
-        service.deleteFacturation(facturationId);
-        return ResponseEntity.ok().build();
+    public boolean deleteFacturation(@PathVariable Long facturationId) {
+        try {
+            service.deleteFacturation(facturationId);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+
     }
 
-    @GetMapping
-    public ResponseEntity<List<Facturation>> listAllFacturations() {
-        return ResponseEntity.ok(service.listAllFacturations());
+    @GetMapping("/list")
+    public List<Facturation> listAllFacturations() {
+        return service.listAllFacturations();
     }
 }

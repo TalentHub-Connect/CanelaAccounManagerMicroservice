@@ -23,9 +23,9 @@ public class CardController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Card> getCardById(@PathVariable int id) {
+    public Card getCardById(@PathVariable int id) {
         Optional<Card> card = cardService.getCardById(id);
-        return card.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+        return card.get();
     }
 
     @PostMapping
@@ -34,7 +34,7 @@ public class CardController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Card> updateCard(@PathVariable int id, @RequestBody Card cardDetails) {
+    public Card updateCard(@PathVariable int id, @RequestBody Card cardDetails) {
         Optional<Card> optionalCard = cardService.getCardById(id);
         if (optionalCard.isPresent()) {
             Card card = optionalCard.get();
@@ -46,19 +46,19 @@ public class CardController {
             card.setAutoRenewal(cardDetails.getAutoRenewal());
             card.setHolderEmail(cardDetails.getHolderEmail());
             Card updatedCard = cardService.saveCard(card);
-            return ResponseEntity.ok(updatedCard);
+            return updatedCard;
         } else {
-            return ResponseEntity.notFound().build();
+            return null;
         }
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteCard(@PathVariable int id) {
+    public boolean deleteCard(@PathVariable int id) {
         if (cardService.getCardById(id).isPresent()) {
             cardService.deleteCard(id);
-            return ResponseEntity.ok().build();
+            return true;
         } else {
-            return ResponseEntity.notFound().build();
+            return false;
         }
     }
 }

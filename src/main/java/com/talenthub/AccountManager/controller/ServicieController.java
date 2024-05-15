@@ -18,52 +18,65 @@ public class ServicieController {
 
     // Listar todos los Servicios o filtrar por rol_id
     @GetMapping
-    public ResponseEntity<List<Servicie>> getAllServices(@RequestParam(required = false) Long roleId) {
+    public List<Servicie> getAllServices(@RequestParam(required = false) Long roleId) {
         List<Servicie> services;
         if (roleId != null) {
             services = servicieService.findServiciesByRoleId(roleId);
         } else {
             services = servicieService.findAllServicies();
         }
-        return ResponseEntity.ok(services);
+        return services;
     }
 
     // Crear un Servicio
     @PostMapping
-    public ResponseEntity<Servicie> createService(@RequestBody Servicie service) {
+    public Servicie createService(@RequestBody Servicie service) {
         Servicie savedService = servicieService.createServicie(service);
-        return ResponseEntity.status(201).body(savedService);
+        return savedService;
     }
 
     // Obtener un Servicio
     @GetMapping("/{serviceId}")
-    public ResponseEntity<Servicie> getService(@PathVariable Long serviceId) {
-        Servicie service = servicieService.findServicieById(serviceId)
-            .orElseThrow(() -> new RuntimeException("Service not found with id: " + serviceId));
-        return ResponseEntity.ok(service);
+    public Servicie getService(@PathVariable Long serviceId) {
+        try {
+            Servicie service = servicieService.findServicieById(serviceId).get();
+            return service;
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+
     }
 
     // Actualizar un Servicio
     @PutMapping("/{serviceId}")
-    public ResponseEntity<Servicie> updateService(@PathVariable Long serviceId, @RequestBody Servicie serviceDetails) {
-        Servicie service = servicieService.findServicieById(serviceId)
-            .orElseThrow(() -> new RuntimeException("Service not found with id: " + serviceId));
+    public Servicie updateService(@PathVariable Long serviceId, @RequestBody Servicie serviceDetails) {
+        try{
+            Servicie service = servicieService.findServicieById(serviceId).get();
+            service.setDescription(serviceDetails.getDescription());
+            service.setRoleId(serviceDetails.getRoleId());
+            service.setStatus(serviceDetails.getStatus());
 
-        service.setDescription(serviceDetails.getDescription());
-        service.setRoleId(serviceDetails.getRoleId());
-        service.setStatus(serviceDetails.getStatus());
+            Servicie updatedService = servicieService.updateServicie(serviceId, service.getDescription(), service.getRoleId(), service.getStatus());
+            return updatedService;
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
 
-        Servicie updatedService = servicieService.updateServicie(serviceId, service.getDescription(), service.getRoleId(), service.getStatus());
-        return ResponseEntity.ok(updatedService);
     }
 
     // Eliminar un Servicio
     @DeleteMapping("/{serviceId}")
-    public ResponseEntity<Void> deleteService(@PathVariable Long serviceId) {
-        Servicie service = servicieService.findServicieById(serviceId)
-            .orElseThrow(() -> new RuntimeException("Service not found with id: " + serviceId));
+    public boolean deleteService(@PathVariable Long serviceId) {
+        try{
+            Servicie service = servicieService.findServicieById(serviceId).get();
+            servicieService.deleteServicie(serviceId);
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
 
-        servicieService.deleteServicie(serviceId);
-        return ResponseEntity.ok().build();
     }
 }
