@@ -30,7 +30,7 @@ public ResponseEntity<Plan> getPlanById(@PathVariable Long id) {
     } else {
         return ResponseEntity.notFound().build();
     }
-}
+    }
 
     @PostMapping
     public ResponseEntity<Plan> addPlan(@RequestBody Plan plan) {
