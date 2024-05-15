@@ -10,28 +10,96 @@ import java.io.Serializable;
 @Entity
 @Accessors(chain = true)
 @Table(name = "facturation")
-public class Facturation implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
+public class Facturation {
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name="id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(name = "facturationdate")
-    private String facturationdate;
+    @Temporal(TemporalType.DATE)
+    private String facturationDate;
 
     @Column(name = "price")
     private Double price;
 
+    @Column(name = "facturationcol")
+    private String facturationId;
+
     @Column(name = "status")
     private String status;
+
+    @Column(name = "company_id")
+    private Long companyId;
+
+    @Column(name = "companyid", nullable = false)
+    private Long companyid;
 
     @Column(name = "name")
     private String name;
 
-    @Column(name = "companyid", nullable = false)
-    private Integer companyid;
+    public String getName() {
+        return name;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getFacturationDate() {
+        return facturationDate;
+    }
+
+    public void setFacturationDate(String facturationDate) {
+        this.facturationDate = facturationDate;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public String getFacturationId() {
+        return facturationId;
+    }
+
+    public void setFacturationId(String facturationId) {
+        this.facturationId = facturationId;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Long getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(Long companyId) {
+        this.companyId = companyId;
+    }
+
+    public Long getCompanyid() {
+        return companyid;
+    }
+
+    public void setCompanyid(Long companyid) {
+        this.companyid = companyid;
+    }
+    
 }

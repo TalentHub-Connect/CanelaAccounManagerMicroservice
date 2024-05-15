@@ -1,41 +1,57 @@
 package com.talenthub.AccountManager.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import com.talenthub.AccountManager.model.Facturation;
+import com.talenthub.AccountManager.service.FacturationService;
 
 @Validated
 @RestController
 @RequestMapping("/facturation")
 public class FacturationController {
 
-//    @Autowired
-//    private FacturationService facturationService;
-//
-//    @PostMapping
-//    public String save(@Valid @RequestBody FacturationVO vO) {
-//        return facturationService.save(vO).toString();
-//    }
-//
-//    @DeleteMapping("/{id}")
-//    public void delete(@Valid @NotNull @PathVariable("id") Integer id) {
-//        facturationService.delete(id);
-//    }
-//
-//    @PutMapping("/{id}")
-//    public void update(@Valid @NotNull @PathVariable("id") Integer id,
-//                       @Valid @RequestBody FacturationUpdateVO vO) {
-//        facturationService.update(id, vO);
-//    }
-//
-//    @GetMapping("/{id}")
-//    public FacturationDTO getById(@Valid @NotNull @PathVariable("id") Integer id) {
-//        return facturationService.getById(id);
-//    }
-//
-//    @GetMapping
-//    public Page<FacturationDTO> query(@Valid FacturationQueryVO vO) {
-//        return facturationService.query(vO);
-//    }
+    @Autowired
+    private FacturationService service;
+
+    @PostMapping
+    public Facturation createFacturation(@RequestBody Facturation facturation) {
+        return service.createFacturation(facturation);
+    }
+
+    @GetMapping("/{facturationId}")
+    public Facturation getFacturation(@PathVariable Long facturationId) {
+        try {
+            return service.getFacturationById(facturationId).get();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @PutMapping("/{facturationId}")
+    public Facturation updateFacturation(@PathVariable Long facturationId, @RequestBody Facturation facturation) {
+        return service.updateFacturation(facturationId, facturation);
+    }
+
+    @DeleteMapping("/{facturationId}")
+    public boolean deleteFacturation(@PathVariable Long facturationId) {
+        try {
+            service.deleteFacturation(facturationId);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+
+    }
+
+    @GetMapping("/list")
+    public List<Facturation> listAllFacturations() {
+        return service.listAllFacturations();
+    }
 }
