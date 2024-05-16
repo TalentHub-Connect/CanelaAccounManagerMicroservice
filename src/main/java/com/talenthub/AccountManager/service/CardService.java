@@ -34,4 +34,16 @@ public class CardService {
     public void deleteCard(int id) {
         cardRepository.deleteById(id);
     }
+
+    public boolean save(Card card) {
+        try {
+            System.out.println(card.toString());
+            cardRepository.save(card);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
+    }
 }

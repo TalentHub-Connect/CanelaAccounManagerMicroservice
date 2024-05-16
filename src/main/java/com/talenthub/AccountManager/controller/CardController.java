@@ -22,6 +22,12 @@ public class CardController {
         return cardService.getAllCards();
     }
 
+    @CrossOrigin
+    @PostMapping("/save")
+    boolean save(@RequestBody Card card){
+        return cardService.save(card);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Card> getCardById(@PathVariable int id) {
         Optional<Card> card = cardService.getCardById(id);
