@@ -30,10 +30,10 @@ public class Facturation {
     private String status;
 
     @Column(name = "company_id")
-    private Long companyId;
+    private Long companyid;
 
     @Column(name = "companyid", nullable = false)
-    private Long companyid;
+    private Long companyId;
 
     @Column(name = "name")
     private String name;
