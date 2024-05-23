@@ -67,4 +67,9 @@ public class CardController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @GetMapping("/email/{email}")
+    public Card getCardByEmail(@PathVariable String email) {
+        return cardService.getCardByEmail(email);
+    }
 }

@@ -46,4 +46,8 @@ public class CardService {
         }
 
     }
+
+    public Card getCardByEmail(String email) {
+        return cardRepository.findByHolderEmail(email);
+    }
 }
