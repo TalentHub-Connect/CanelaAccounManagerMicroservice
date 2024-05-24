@@ -45,6 +45,7 @@ public class CompanyController {
         }
     }
 
+
     @GetMapping("id/{companyid}")
     public ResponseEntity<Company> getCompanyById(@PathVariable String companyid) {
         try {
