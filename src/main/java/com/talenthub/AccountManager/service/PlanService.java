@@ -1,5 +1,6 @@
 package com.talenthub.AccountManager.service;
 
+import com.talenthub.AccountManager.model.Company;
 import com.talenthub.AccountManager.model.Plan;
 import com.talenthub.AccountManager.repository.PlanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,9 @@ public class PlanService {
     public PlanService(PlanRepository planRepository) {
         this.planRepository = planRepository;
     }
+
+    @Autowired
+    CompanyService companyService;
 
     public List<Plan> findAllPlans() {
         return planRepository.findAll();
@@ -54,5 +58,15 @@ public class PlanService {
 
     public Optional<Plan> findById(Long id) {
         return planRepository.findById(id);
+    }
+
+    public Plan findPlanByCompanyId(Integer companyid) {
+        try{
+            Company company = companyService.findById(companyid);
+            return planRepository.findById(company.getPlanId()).get();
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
     }
 }

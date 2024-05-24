@@ -3,6 +3,7 @@ package com.talenthub.AccountManager.service;
 import com.talenthub.AccountManager.model.Company;
 import com.talenthub.AccountManager.payload.response.CompanyResponse;
 import com.talenthub.AccountManager.repository.CompanyRepository;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +32,10 @@ public class CompanyService {
         return CompanyResponse.builder()
                 .id(companyRepository.getCompanyIdByEmail(email))
                 .build();
+    }
+
+    public Company findById(Integer companyid)  throws Exception {
+        return companyRepository.findById(companyid).get();
     }
 
 //    public void delete(Integer id) {

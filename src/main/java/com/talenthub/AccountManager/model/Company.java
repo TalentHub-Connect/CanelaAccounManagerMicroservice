@@ -48,6 +48,17 @@ public class Company implements Serializable {
     @Column(name = "status")
     private String status;
 
+    public Long getPlanId() {
+        return planId;
+    }
+
+    public void setPlanId(Long planId) {
+        this.planId = planId;
+    }
+
+    @Column(name = "plan_id")
+    private Long planId;
+
     public int getId() {
         return id;
     }
@@ -143,5 +154,6 @@ public class Company implements Serializable {
     public void setStatus(String status) {
         this.status = status;
     }
+
 
 }
