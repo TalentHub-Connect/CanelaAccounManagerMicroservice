@@ -37,11 +37,21 @@ public class CompanyController {
     }
 
     @GetMapping("/{email}")
-    public CompanyResponse getCompany(@PathVariable String email) {
+    public ResponseEntity<CompanyResponse> getCompanyId(@PathVariable String email) {
         try {
-            return companyService.getCompanyId(email);
+            return ResponseEntity.ok(companyService.getCompanyId(email));
         } catch (Exception e) {
-            return null;
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+
+    @GetMapping("id/{companyid}")
+    public ResponseEntity<Company> getCompanyById(@PathVariable String companyid) {
+        try {
+            return ResponseEntity.ok(companyService.findById(Integer.parseInt(companyid)));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
         }
     }
 

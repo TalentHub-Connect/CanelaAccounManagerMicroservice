@@ -22,6 +22,12 @@ public class CardController {
         return cardService.getAllCards();
     }
 
+    @CrossOrigin
+    @PostMapping("/save")
+    boolean save(@RequestBody Card card){
+        return cardService.save(card);
+    }
+
     @GetMapping("/{id}")
     public Card getCardById(@PathVariable int id) {
         Optional<Card> card = cardService.getCardById(id);
@@ -60,5 +66,10 @@ public class CardController {
         } else {
             return false;
         }
+    }
+
+    @GetMapping("/email/{email}")
+    public Card getCardByEmail(@PathVariable String email) {
+        return cardService.getCardByEmail(email);
     }
 }

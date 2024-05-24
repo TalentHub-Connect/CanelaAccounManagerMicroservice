@@ -16,7 +16,7 @@ import java.io.Serializable;
 public class Card {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
     
     @Column(name = "cardnumber", nullable = false, length = 19)
