@@ -1,6 +1,7 @@
 package com.talenthub.AccountManager.controller;
 
 
+import com.talenthub.AccountManager.model.Company;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -52,5 +53,15 @@ public ResponseEntity<Plan> getPlanById(@PathVariable Long id) {
     public ResponseEntity<Void> deletePlan(@PathVariable Long id) {
         planService.deletePlan(id);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/company/{companyid}")
+    public ResponseEntity<Plan> getPlanByCompanyId(@PathVariable Integer companyid) {
+        Plan plan = planService.findPlanByCompanyId(companyid);
+        if (plan != null) {
+            return ResponseEntity.ok(plan);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }
