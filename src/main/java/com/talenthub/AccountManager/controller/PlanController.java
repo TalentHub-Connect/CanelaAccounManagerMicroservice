@@ -23,10 +23,10 @@ public class PlanController {
         return planService.findAllPlans();
     }
 
-    @GetMapping("/list")
+   /*  @GetMapping("/list")
     public List<Plan> findAll() {
         return planService.findAllPlans();
-    }
+    }*/
 
 
     @GetMapping("/{id}")
