@@ -54,4 +54,14 @@ public class FacturationController {
     public List<Facturation> listAllFacturations() {
         return service.listAllFacturations();
     }
+
+    @GetMapping("/company/{companyId}")
+    public ResponseEntity<List<Facturation>> getFacturationsByCompanyId(@PathVariable Long companyId) {
+        List<Facturation> facturations = service.getFacturationsByCompanyId(companyId);
+        if (facturations != null && !facturations.isEmpty()) {
+            return ResponseEntity.ok(facturations);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }

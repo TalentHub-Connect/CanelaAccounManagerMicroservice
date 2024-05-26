@@ -23,14 +23,9 @@ public class Facturation {
     @Column(name = "price")
     private Double price;
 
-    @Column(name = "facturationcol")
-    private String facturationId;
 
     @Column(name = "status")
     private String status;
-
-    @Column(name = "company_id")
-    private Long companyid;
 
     @Column(name = "companyid", nullable = false)
     private Long companyId;
@@ -70,13 +65,6 @@ public class Facturation {
         this.price = price;
     }
 
-    public String getFacturationId() {
-        return facturationId;
-    }
-
-    public void setFacturationId(String facturationId) {
-        this.facturationId = facturationId;
-    }
 
     public String getStatus() {
         return status;
@@ -94,12 +82,7 @@ public class Facturation {
         this.companyId = companyId;
     }
 
-    public Long getCompanyid() {
-        return companyid;
-    }
-
-    public void setCompanyid(Long companyid) {
-        this.companyid = companyid;
-    }
+   
+    
     
 }
