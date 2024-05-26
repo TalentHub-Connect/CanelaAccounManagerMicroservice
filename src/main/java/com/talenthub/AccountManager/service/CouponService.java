@@ -41,7 +41,6 @@ public class CouponService {
                 coupon.setStatus(newCoupon.getStatus());
                 coupon.setCompanyId(newCoupon.getCompanyId());
                 coupon.setDiscountRate(newCoupon.getDiscountRate());  
-                coupon.setCompanyid(newCoupon.getCompanyid());
                 return couponRepository.save(coupon);
             })
             .orElseGet(() -> {

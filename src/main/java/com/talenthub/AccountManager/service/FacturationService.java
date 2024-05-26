@@ -36,10 +36,8 @@ public class FacturationService {
         return repository.findById(id).map(facturation -> {
             facturation.setFacturationDate(updatedFacturation.getFacturationDate());
             facturation.setPrice(updatedFacturation.getPrice());
-            facturation.setFacturationId(updatedFacturation.getFacturationId());
             facturation.setStatus(updatedFacturation.getStatus());
             facturation.setCompanyId(updatedFacturation.getCompanyId());
-            facturation.setCompanyid(updatedFacturation.getCompanyid());
             facturation.setName(updatedFacturation.getName());
             return repository.save(facturation);
         }).orElseThrow(() -> new RuntimeException("Facturation not found"));
@@ -53,5 +51,10 @@ public class FacturationService {
     @Transactional
     public List<Facturation> listAllFacturations() {
         return repository.findAll();
+    }
+
+        // Nuevo método para obtener facturación por ID de empresa
+    public List<Facturation> getFacturationsByCompanyId(Long companyId) {
+            return repository.findByCompanyId(companyId);
     }
 }
